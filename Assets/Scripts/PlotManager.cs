@@ -101,9 +101,12 @@ public class PlotManager : MonoBehaviour
             boxOfficeTextField.text = string.Format("Your film lost ${0} dollars...", moneyGrossed);
         }
 
+        // Convert to millions of dollars
         float revenueInMillions = moneyGrossed / Mathf.Pow(10, 7);
+        
+        // Update total revenue field with money gained/lost from this film
         totalRevenue += revenueInMillions;
-        totalRevenueField.text = string.Format("Total revenue: ${0} million", totalRevenue);
+        totalRevenueField.text = string.Format("Total Revenue:\n${0} million", totalRevenue);
     }
 
     IEnumerator NextPlot(float delay)
