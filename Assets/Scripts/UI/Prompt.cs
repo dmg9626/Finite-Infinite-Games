@@ -34,12 +34,6 @@ public class Prompt : MonoBehaviour
             Debug.LogError("Error: TextMeshProUGUI component missing from " + name);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     /// <summary>
     /// Initializes prompt field with incompleted movie prompt

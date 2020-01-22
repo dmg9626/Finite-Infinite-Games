@@ -34,4 +34,9 @@ public class EntryItem : MonoBehaviour
     {
         return inputField.text;
     }
+
+    public void SetItemDescroption(string description)
+    {
+        this.description.text = description;
+    }
 }

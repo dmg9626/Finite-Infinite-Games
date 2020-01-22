@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlotManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class PlotManager : MonoBehaviour
     [SerializeField]
     private Button submitButton;
 
+    /// <summary>
+    /// Shows how much money the movie grossed (only shown after submission)
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI boxOfficeTextField;
+
     [Header("Data")]
     /// <summary>
     /// Reference to entry item prefab
@@ -41,6 +48,12 @@ public class PlotManager : MonoBehaviour
     /// Current plot displayed
     /// </summary>
     private Plot currentPlot;
+
+    /// <summary>
+    /// Range of revenue values that each movie plot can gross
+    /// </summary>
+    [SerializeField]
+    private Vector2 boxOfficeRange;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +78,18 @@ public class PlotManager : MonoBehaviour
 
     IEnumerator NextPlot(float delay)
     {
+        // Show amout of money grossed by this film
+        int moneyGrossed = (int)Random.Range(boxOfficeRange.x, boxOfficeRange.y);
+        if(moneyGrossed > 0) {
+            boxOfficeTextField.text = string.Format("Your film made ${0} dollars!!", moneyGrossed);
+        }
+        else {
+            boxOfficeTextField.text = string.Format("Your film lost ${0} dollars...", moneyGrossed);
+        }
+
+        // Clear entry fields
+        ClearEntryFields();
+
         // Wait for seconds before showing next plot prompt
         yield return new WaitForSeconds(delay);
 
@@ -88,12 +113,19 @@ public class PlotManager : MonoBehaviour
         // Set movie prompt in UI
         promptField.InitializePrompt(currentPlot.prompt);
 
+        // Populate new ones
+        currentPlot.PopulateEntryItems(entryItemPrefab, verticalLayoutGroup);
+
+        // Clear box office text field
+        boxOfficeTextField.text = "";
+    }
+
+    void ClearEntryFields()
+    {
         // Clear existing entry items
         for(int i = 0; i < verticalLayoutGroup.transform.childCount; i++) {
             Transform child = verticalLayoutGroup.transform.GetChild(i);
             Destroy(child.gameObject);
         }
-        // Populate new ones
-        currentPlot.PopulateEntryItems(entryItemPrefab, verticalLayoutGroup);
     }
 }

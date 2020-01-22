@@ -12,6 +12,11 @@ public class Plot : MonoBehaviour
     /// </summary>
     public string prompt;
 
+    /// <summary>
+    /// Type of thing requested for each blank field
+    /// </summary>
+    public string[] fieldEntryTypes;
+
     public int numberOfBlanks {get; private set;}
 
     /// <summary>
@@ -26,7 +31,11 @@ public class Plot : MonoBehaviour
         entryItems = new EntryItem[numberOfBlanks];
 
         for(int i = 0; i < numberOfBlanks; i++) {
+            // Instantiate entry field with description of thing to enter
             EntryItem entryItem = Instantiate(entryItemPrefab, layoutGroup.transform);
+            entryItem.SetItemDescroption(fieldEntryTypes[i]);
+
+            // Add ato list
             entryItems[i] = entryItem;
         }
     }
