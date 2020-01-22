@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class PlotManager : MonoBehaviour
 {
+    [Header("UI References")]
     /// <summary>
-    /// List of plots prompts to give the player
+    /// Holds all the entry fields for user to fill out blanks
     /// </summary>
     [SerializeField]
-    private List<Plot> plots;
-    
+    private VerticalLayoutGroup verticalLayoutGroup;
+
     /// <summary>
     /// Used to display prompt in UI
     /// </summary>
@@ -18,15 +19,28 @@ public class PlotManager : MonoBehaviour
     private Prompt promptField;
 
     /// <summary>
-    /// Current plot displayed
-    /// </summary>
-    private Plot currentPlot;
-
-    /// <summary>
     /// Fills out the plot with user entries when clicked
     /// </summary>
     [SerializeField]
     private Button submitButton;
+
+    [Header("Data")]
+    /// <summary>
+    /// Reference to entry item prefab
+    /// </summary>
+    [SerializeField]
+    private EntryItem entryItemPrefab;
+
+    /// <summary>
+    /// List of plots prompts to give the player
+    /// </summary>
+    [SerializeField]
+    private List<Plot> plots;
+
+    /// <summary>
+    /// Current plot displayed
+    /// </summary>
+    private Plot currentPlot;
 
     // Start is called before the first frame update
     void Start()
@@ -61,5 +75,13 @@ public class PlotManager : MonoBehaviour
     {
         // Set movie prompt in UI
         promptField.InitializePrompt(currentPlot.prompt);
+
+        // Clear existing entry items
+        for(int i = 0; i < verticalLayoutGroup.transform.childCount; i++) {
+            Transform child = verticalLayoutGroup.transform.GetChild(i);
+            Destroy(child);
+        }
+        // Populate new ones
+        currentPlot.PopulateEntryItems(entryItemPrefab, verticalLayoutGroup);
     }
 }

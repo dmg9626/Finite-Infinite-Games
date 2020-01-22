@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Plot : MonoBehaviour
@@ -11,28 +12,23 @@ public class Plot : MonoBehaviour
     /// </summary>
     public string prompt;
 
+    public int numberOfBlanks {get; private set;}
+
     /// <summary>
-    /// Reference to entry item prefab
+    /// UI fields user enters their answers into
     /// </summary>
-    private EntryItem entryItemPrefab;
-
-    private int numberOfBlanks;
-
-    [SerializeField]
     private EntryItem[] entryItems;
 
-    // Start is called before the first frame update
-    void Start()
+    public void PopulateEntryItems(EntryItem entryItemPrefab, VerticalLayoutGroup layoutGroup)
     {
         // Create array of entry items corresponding to each blank field
         numberOfBlanks = prompt.Count(f => f == Prompt.blankIdentifier);
-        // entryItems = new EntryItem[numberOfBlanks];
-    }
+        entryItems = new EntryItem[numberOfBlanks];
 
-    // TODO: instantaite verticallayoutgroup with entry items
-    public void PopulateEntryItems()
-    {
-
+        for(int i = 0; i < numberOfBlanks; i++) {
+            EntryItem entryItem = Instantiate(entryItemPrefab, layoutGroup.transform);
+            entryItems[i] = entryItem;
+        }
     }
 
     public void PopulateBlanks(Prompt promptField)

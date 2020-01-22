@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4121031259659327749}
   - component: {fileID: 4121031259659327748}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Description (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 4121031260564399239}
   - component: {fileID: 4121031260564399237}
   - component: {fileID: 4121031260564399236}
+  - component: {fileID: 1291602710}
   m_Layer: 5
   m_Name: EntryItem
   m_TagString: Untagged
@@ -748,7 +749,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4121031260564399238}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1052.5334}
   m_LocalScale: {x: 1.3333334, y: 1.3333334, z: 1.3333334}
   m_Children:
@@ -797,3 +798,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1291602710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4121031260564399238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b462d8aaadd48f0895e1b0958c5ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: {fileID: 4121031259659327748}
+  inputField: {fileID: 4121031260141044636}

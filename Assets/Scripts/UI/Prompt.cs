@@ -59,7 +59,9 @@ public class Prompt : MonoBehaviour
         string newPrompt = prompt;
         int index = 0;
         for(int i = 0; i < entries.Length; i++) {
+            // Get entry and add bold tags around it
             string entry = entries[i];
+            entry = "<b>" + entry + "</b>";
 
             // Find index of blank
             index = newPrompt.IndexOf(blankIdentifier, index);
