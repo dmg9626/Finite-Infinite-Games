@@ -1,4 +1,8 @@
 List of Resources used:
 
 Artwork
-	Comptuer screen image - https://clipartart.com/images/apple-computers-clipart.png
+	Comptuer screen image - clipartart.com (https://clipartart.com/images/apple-computers-clipart.png)
+
+
+Scripts
+	Gradient2.cs (used for background gradient) - Unity UI Extensions (https://bitbucket.org/UnityUIExtensions/unity-ui-extensions/src/master/)
