@@ -45,26 +45,38 @@ public class PlotManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get plots in children
+        GetComponentsInChildren<Plot>(plots);
+        
         // Start at current plot
         currentPlot = plots[0];
         ShowPlot();
 
-        // Populate blanks with user entries after pressing button
+        // Button press event
         submitButton.onClick.AddListener(() => {
+            // Populate fields with user entries
             currentPlot.PopulateBlanks(promptField);
+
+            // Wait for seconds before presenting next prompt
+            StartCoroutine(NextPlot(1.5f));
             
         });
     }
 
-    void NextPlot()
+    IEnumerator NextPlot(float delay)
     {
+        // Wait for seconds before showing next plot prompt
+        yield return new WaitForSeconds(delay);
+
         int index = plots.IndexOf(currentPlot);
         // Go to next plot
         try {
-            currentPlot = plots[index++];
+            Debug.LogFormat("Moving from plot {0} to {1}", index, index+1);
+            currentPlot = plots[index+1];
         }
         // Or start from beginning if we did the last one
         catch(System.IndexOutOfRangeException ex) {
+            Debug.Log("Looping back to first plot");
             currentPlot = plots[0];
         }
 
@@ -79,7 +91,7 @@ public class PlotManager : MonoBehaviour
         // Clear existing entry items
         for(int i = 0; i < verticalLayoutGroup.transform.childCount; i++) {
             Transform child = verticalLayoutGroup.transform.GetChild(i);
-            Destroy(child);
+            Destroy(child.gameObject);
         }
         // Populate new ones
         currentPlot.PopulateEntryItems(entryItemPrefab, verticalLayoutGroup);

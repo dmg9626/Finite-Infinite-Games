@@ -33,7 +33,7 @@ public class Plot : MonoBehaviour
 
     public void PopulateBlanks(Prompt promptField)
     {
-        Debug.Log("Plot | Populating blanks...");
+        Debug.Log("Plot | Populating blanks");
         string[] entries = new string[entryItems.Length];
         for(int i = 0; i < entryItems.Length; i++) {
             EntryItem entry = entryItems[i];
