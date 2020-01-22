@@ -31,6 +31,12 @@ public class PlotManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI boxOfficeTextField;
 
+    /// <summary>
+    /// Shows total money grossed
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI totalRevenueField;
+
     [Header("Data")]
     /// <summary>
     /// Reference to entry item prefab
@@ -55,6 +61,11 @@ public class PlotManager : MonoBehaviour
     [SerializeField]
     private Vector2 boxOfficeRange;
 
+    /// <summary>
+    /// Total revenue (in millions)
+    /// </summary>
+    private float totalRevenue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,13 +81,16 @@ public class PlotManager : MonoBehaviour
             // Populate fields with user entries
             currentPlot.PopulateBlanks(promptField);
 
+            GenerateRevenue();
+            
+            ClearEntryFields();
+
             // Wait for seconds before presenting next prompt
             StartCoroutine(NextPlot(1.5f));
-            
         });
     }
 
-    IEnumerator NextPlot(float delay)
+    void GenerateRevenue()
     {
         // Show amout of money grossed by this film
         int moneyGrossed = (int)Random.Range(boxOfficeRange.x, boxOfficeRange.y);
@@ -87,9 +101,13 @@ public class PlotManager : MonoBehaviour
             boxOfficeTextField.text = string.Format("Your film lost ${0} dollars...", moneyGrossed);
         }
 
-        // Clear entry fields
-        ClearEntryFields();
+        float revenueInMillions = moneyGrossed / Mathf.Pow(10, 7);
+        totalRevenue += revenueInMillions;
+        totalRevenueField.text = string.Format("Total revenue: ${0} million", totalRevenue);
+    }
 
+    IEnumerator NextPlot(float delay)
+    {
         // Wait for seconds before showing next plot prompt
         yield return new WaitForSeconds(delay);
 
