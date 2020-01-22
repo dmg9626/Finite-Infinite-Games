@@ -75,7 +75,7 @@ public class PlotManager : MonoBehaviour
             currentPlot = plots[index+1];
         }
         // Or start from beginning if we did the last one
-        catch(System.IndexOutOfRangeException ex) {
+        catch(System.ArgumentOutOfRangeException ex) {
             Debug.Log("Looping back to first plot");
             currentPlot = plots[0];
         }
