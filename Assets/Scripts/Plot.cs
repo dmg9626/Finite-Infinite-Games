@@ -33,7 +33,7 @@ public class Plot : MonoBehaviour
         for(int i = 0; i < numberOfBlanks; i++) {
             // Instantiate entry field with description of thing to enter
             EntryItem entryItem = Instantiate(entryItemPrefab, layoutGroup.transform);
-            entryItem.SetItemDescroption(fieldEntryTypes[i]);
+            entryItem.SetItemDescription(fieldEntryTypes[i]);
 
             // Add ato list
             entryItems[i] = entryItem;

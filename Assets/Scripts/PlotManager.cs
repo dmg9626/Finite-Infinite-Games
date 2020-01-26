@@ -66,7 +66,7 @@ public class PlotManager : MonoBehaviour
     /// </summary>
     private float totalRevenue;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         // Get plots in children

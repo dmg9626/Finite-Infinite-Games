@@ -29,7 +29,7 @@ public class EntryItem : MonoBehaviour
         return inputField.text;
     }
 
-    public void SetItemDescroption(string description)
+    public void SetItemDescription(string description)
     {
         this.description.text = description;
     }
