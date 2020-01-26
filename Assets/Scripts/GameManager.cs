@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    /// <summary>
+    /// Displays game results when time runs out (only for finite game)
+    /// </summary>
+    [SerializeField]
+    private EndScreen endScreen;
+
+    [SerializeField]
+    private GameObject gameScreen;
+
+    [SerializeField]
+    private PlotManager plotManager;
+
     [Header("Settings")]
     /// <summary>
     /// True if this is a finite game, false otherwise
@@ -13,7 +25,7 @@ public class GameManager : Singleton<GameManager>
     /// Duration of game (only used if finite is true)
     /// </summary>
     [SerializeField]
-    [Range(30, 120)]
+    [Range(5, 120)]
     private float timeLimit;
 
     /// <summary>
@@ -38,6 +50,9 @@ public class GameManager : Singleton<GameManager>
         if(finite) {
             timeRemaining = timeLimit;
             StartCoroutine(Tick());
+
+            // Trigger game over when time runs out
+            OnTimeExpired += () => GameOver();
         }
     }
 
@@ -50,5 +65,12 @@ public class GameManager : Singleton<GameManager>
         }
         // Fire event when time runs out
         OnTimeExpired?.Invoke();
+    }
+
+    private void GameOver()
+    {
+        endScreen.gameObject.SetActive(true);
+        gameScreen.SetActive(false);
+        endScreen.ShowResults(plotManager.plotsGenerated, plotManager.totalRevenue);
     }
 }

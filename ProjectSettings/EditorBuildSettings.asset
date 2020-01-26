@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 46150570d3afd43818f1f7b5b826bf2b
   - enabled: 1
-    path: Assets/Scenes/Infinite.unity
+    path: Assets/Scenes/Finite.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Infinite.unity
+    guid: 2d65876c5345b4401bff79873cb1635b
   m_configObjects: {}

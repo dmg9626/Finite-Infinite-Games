@@ -2662,7 +2662,7 @@ MonoBehaviour:
   endScreen: {fileID: 1522379537}
   gameScreen: {fileID: 931968776}
   plotManager: {fileID: 1721852278}
-  finite: 0
+  finite: 1
   timeLimit: 60
 --- !u!4 &1949695110
 Transform:
