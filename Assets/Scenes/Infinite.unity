@@ -1421,8 +1421,7 @@ MonoBehaviour:
   boxOfficeTextField: {fileID: 2068184005}
   totalRevenueField: {fileID: 1700356882}
   entryItemPrefab: {fileID: 1291602710, guid: 89b9632e53c154da884740ef32d81292, type: 3}
-  plots:
-  - {fileID: 965447397}
+  plots: []
   boxOfficeRange: {x: -80000000, y: 450000000}
 --- !u!4 &1721852279
 Transform:

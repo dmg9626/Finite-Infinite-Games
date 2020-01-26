@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// UI element allowing player to enter text that will fill in the blanks
+/// </summary>
 public class EntryItem : MonoBehaviour
 {
     /// <summary>
-    /// Describes the type of thing user should enter
+    /// Describes the type of thing user should enter (ex. Person, Place, Group)
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI description;
@@ -17,19 +20,10 @@ public class EntryItem : MonoBehaviour
     [SerializeField]
     private TMP_InputField inputField;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// Returns text entered by user
+    /// </summary>
+    /// <returns></returns>
     public string GetUserEntry()
     {
         return inputField.text;

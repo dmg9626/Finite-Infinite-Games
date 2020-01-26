@@ -7,7 +7,7 @@ using TMPro;
 public class Prompt : MonoBehaviour
 {
     /// <summary>
-    /// Describes the type of thing user should enter
+    /// Text displaying the movie prompt, with blanks corresponding to EntryItems for user to fill out
     /// </summary>
     private TextMeshProUGUI promptField;
 
@@ -48,12 +48,16 @@ public class Prompt : MonoBehaviour
         promptField.text = prompt.Replace(blankIdentifier.ToString(), blankPlaceholder);
     }
 
+    /// <summary>
+    /// Populates the blank fields with the user's submissions
+    /// </summary>
+    /// <param name="entries">User entries to populate each blank with</param>
     public void PopulateBlanks(string[] entries)
     {
         string newPrompt = prompt;
         int index = 0;
         for(int i = 0; i < entries.Length; i++) {
-            // Get entry and add bold tags around it
+            // Get user entry and add bold tags around it
             string entry = entries[i];
             entry = "<b>" + entry + "</b>";
 
@@ -75,6 +79,13 @@ public class Prompt : MonoBehaviour
         promptField.text = newPrompt;
     }
 
+    /// <summary>
+    /// Replaces first occurance of substring
+    /// </summary>
+    /// <param name="source">String to operate on</param>
+    /// <param name="find">Substring to find</param>
+    /// <param name="replace">Substring to replace occurance with</param>
+    /// <returns></returns>
     private string ReplaceFirstOccurrence (string source, string find, string replace)
     {
         int Place = source.IndexOf(find);

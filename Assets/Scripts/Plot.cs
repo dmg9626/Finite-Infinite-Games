@@ -40,10 +40,16 @@ public class Plot : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Populates blank fields in prompt with user's submissions in EntryItems.
+    /// </summary>
+    /// <param name="promptField"></param>
     public void PopulateBlanks(Prompt promptField)
     {
         Debug.Log("Plot | Populating blanks");
         string[] entries = new string[entryItems.Length];
+
+        // TODO: check if user left any fields blank
         for(int i = 0; i < entryItems.Length; i++) {
             EntryItem entry = entryItems[i];
             entries[i] = entry.GetUserEntry();
